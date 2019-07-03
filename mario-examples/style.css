@@ -12,8 +12,10 @@ html, body{
 }
 
 .sky{
+  z-index: -1;
   height: 40%;
   background: skyblue;
+  animation: darken 18s ease-in-out infinite alternate;
 }
 
 .grass{
@@ -46,7 +48,9 @@ html, body{
   top: -40px;
   left: 0px;
   animation: drive 3s both infinite linear,
-             jump 0.3s 1.2s ease;
+             jump 0.3s 1.2s ease,
+             grow 1s 6.9s ease-in-out,
+             keep-large 1s 7.7s ease-in;
 }
 
 .luigi {
@@ -63,6 +67,7 @@ html, body{
 
 .cloud {
   position: absolute;
+  z-index: 1;
 }
 
 .cloud:nth-child(1) {
@@ -76,6 +81,29 @@ html, body{
   width: 300px;
   top: 0;
   animation: wind 50s linear infinite reverse;
+}
+
+.banana {
+  position: absolute;
+  top: 0px;
+  left: 44%;
+  animation: disappear 1s 1.5s ease forwards;
+}
+
+.mushroom {
+  position: absolute;
+  opacity: 0;
+  top: 20px;
+  left: 24%;
+  animation: disappear 0.5s 4.5s ease forwards reverse,
+             disappear 0.2s 6.7s ease forwards;
+}
+
+.sun {
+  position: relative;
+  top: 10px;
+  left: 5%;
+  animation: disappear 17s 2s ease-in-out infinite alternate;
 }
 
 /*// KEYFRAMES //*/
@@ -94,4 +122,26 @@ html, body{
   0% { top: -40px }
   50% { top: -100px }
   100% { top: -40px }
+}
+
+@keyframes disappear {
+  from { opacity: 1 }
+  to { opacity: 0 }
+}
+
+@keyframes grow {
+  0% { transform: scale(1); top: -40px; left: 24% }
+  40% { transform: scale(1.05); top: -41px; left: 24% }
+  80% { transform: scale(1.1); top: -42px; left: 24% }
+  100% { transform: scale(1.15); top: -43px; left: 24% }
+}
+
+@keyframes keep-large {
+  from { transform: scale(1.15); top: -43px; left: 24% }
+  to { transform: scale(1.15); top: -43px; left: 100% }
+}
+
+@keyframes darken {
+  from { background: skyblue }
+  to { background: royalblue }
 }
